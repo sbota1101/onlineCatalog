@@ -1,6 +1,7 @@
 package com.sb.onlineCatalog.controller;
 import com.sb.onlineCatalog.model.Student;
 
+import com.sb.onlineCatalog.service.GradeService;
 import com.sb.onlineCatalog.service.SchoolGroupService;
 import com.sb.onlineCatalog.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class StudentController {
 
     @Autowired
     private SchoolGroupService schoolGroupService;
+    @Autowired
+    private GradeService gradeService;
 
     @GetMapping("allstudents")
     public String showAllStudents(Model model) {
@@ -33,6 +36,7 @@ public class StudentController {
 
     @GetMapping("/addstudent")
     public String addStudent(Model model) {
+        model.addAttribute("grades",gradeService.findAll());
         model.addAttribute("schoolgroups", schoolGroupService.findAll());
         model.addAttribute("student", new Student()); // initial bind with the form, to say to the webpage
         // what is the type of student th:object
@@ -44,13 +48,14 @@ public class StudentController {
     public String addStudent(@ModelAttribute Student student) {
 //        System.out.println(student);
         studentService.save(student);
-        return "redirect:/allstudents";
+        return "redirect:/allstudent";
 
     }
 
     @GetMapping("/editstudent/{id}")
     public String editStudent(Model model, @PathVariable Integer id) {
         model.addAttribute("schoolgroups", schoolGroupService.findAll());
+        model.addAttribute("grades",gradeService.findAll());
         Student student = studentService.findById(id);
 
         model.addAttribute("student", student); // initial bind with the form, to say to the webpage

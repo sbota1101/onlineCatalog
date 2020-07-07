@@ -58,6 +58,16 @@
                 </div>
             </div>
             <button type="submit">Add</button>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="student_grades" th:field="*{grade.gradeId}">
+                        <option th:each="sc: ${grades}" th:value="${sc.gradeId}"
+                                th:text="${sc.grade + ' ' + sc.gradeDate}"/>
+                    </select>
+                    <label for="student_grades"><b>Grades</b></label>
+                </div>
+            </div>
+            <button type="submit">Add</button>
         </div>
     </form>
 </div>

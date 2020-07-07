@@ -24,7 +24,7 @@ public class SchoolGroupController {
 
         model.addAttribute("schoolgroups", schoolGroups);
 
-        return "/schoolgroup/showallschoolgroups";
+        return "schoolgroup/showallschoolgroups";
     }
 
     @GetMapping("/addschoolgroup")
@@ -49,7 +49,7 @@ public class SchoolGroupController {
         return "schoolgroup/viewstudents";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editschoolgroup/{id}")
     public String editschoolgroup(Model model, @PathVariable Integer id) {
         SchoolGroup schoolGroup = schoolGroupService.findById(id);
 
@@ -60,7 +60,7 @@ public class SchoolGroupController {
     }
 
     @PostMapping("/editschoolgroup/{id}")
-    public String editProfessor(@ModelAttribute SchoolGroup schoolGroup, @PathVariable Integer id) {
+    public String edischoolgroup(@ModelAttribute SchoolGroup schoolGroup, @PathVariable Integer id) {
 
         schoolGroupService.save(schoolGroup); // save it again. SAVE acts as UPDATE
 

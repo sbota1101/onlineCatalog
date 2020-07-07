@@ -13,7 +13,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>onlineCatalog</name>
 	<description>Online catalog for schools</description>
-
+<!--	<dependency>-->
+<!--		<groupId>org.postgresql</groupId>-->
+<!--		<artifactId>postgresql</artifactId>-->
+<!--		<scope>runtime</scope>-->
+<!--	</dependency>-->
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -56,8 +60,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	</dependencies>
 
+	<dependency>
+		<groupId>com.sendgrid</groupId>
+		<artifactId>sendgrid-java</artifactId>
+	</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>

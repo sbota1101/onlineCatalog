@@ -1,4 +1,5 @@
 package com.sb.onlineCatalog.controller;
+
 import com.sb.onlineCatalog.model.Grade;
 import com.sb.onlineCatalog.service.GradeService;
 import com.sb.onlineCatalog.service.StudentService;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -29,10 +31,7 @@ public class GradeController {
 
     @GetMapping("/addgrade")
     public String addGrade(Model model) {
-       // model.addAttribute("schoolgroups", schoolGroupService.findAll());
-        model.addAttribute("grade", new Grade()); // initial bind with the form, to say to the webpage
-        // what is the type of student th:object
-
+        model.addAttribute("grade", new Grade());
         return "grade/addgrade";
     }
 
@@ -42,18 +41,37 @@ public class GradeController {
         return "redirect:/allgrades";
 
     }
-//
-//    @GetMapping("/editstudent/{id}")
-//    public String editStudent(Model model, @PathVariable Integer id) {
-//        model.addAttribute("schoolgroups", schoolGroupService.findAll());
-//        Student student = studentService.findById(id);
-//
-//        model.addAttribute("student", student); // initial bind with the form, to say to the webpage
-//
-//        // what is the type of student th:object
-//
-//        return "student/editstudent";
-//    }
 
+    @GetMapping("/editgrade/{id}")
+    public String editStudent(Model model, @PathVariable Integer id) {
+        model.addAttribute("grades", gradeService.findAll());
+        Grade grade = gradeService.findById(id);
 
+        model.addAttribute("grade", grade); // initial bind with the form, to say to the webpage
+
+        // what is the type of student th:object
+
+        return "grade/editgrade";
+    }
+
+    @PostMapping("/editgrade/{id}")
+    public String editgrade(@ModelAttribute Grade grade, @PathVariable Integer id) {
+
+        gradeService.save(grade); // save it again. SAVE acts as UPDATE
+
+        return "redirect:/allgrades";
+
+    }
+
+    @GetMapping("/deletegrade/{id}")
+    public String deleteGrade(@PathVariable Integer id) {
+        gradeService.deleteById(id);
+
+        return "redirect:/allgrades";
+    }
+    @GetMapping("/grade/{id}/students")
+    public String viewGradesOfStudent(Model model, @PathVariable Integer id) {
+        model.addAttribute("students", gradeService.findGradesByStudent(id));
+        return "grade/viewstudents";
+    }
 }

@@ -23,6 +23,7 @@ public class SchoolGroupService {
     public void save(SchoolGroup schoolGroup) {
         schoolGroupRepository.save(schoolGroup);
     }
+
     public SchoolGroup findById(Integer id) {
         Optional<SchoolGroup> schoolGroup = schoolGroupRepository.findById(id);
         if (schoolGroup.isPresent()) {
@@ -34,15 +35,16 @@ public class SchoolGroupService {
 
     public List<Student> findStudentsByGroup(Integer id) {
         //done: try catch / check if present
-        Optional<SchoolGroup> students =  schoolGroupRepository.findById(id);
+        Optional<SchoolGroup> students = schoolGroupRepository.findById(id);
         if (students.isPresent()) {
             return students.get().getStudents();
         }
         return null;
     }
+
     public void deleteById(Integer id) {
         schoolGroupRepository.deleteById(id);
     }
 
- }
+}
 
