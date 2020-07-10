@@ -1,5 +1,7 @@
 package com.sb.onlineCatalog.controller;
+
 import com.sb.onlineCatalog.model.Professor;
+import com.sb.onlineCatalog.service.DisciplineService;
 import com.sb.onlineCatalog.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+
 @Controller
 public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
+    @Autowired
+    private DisciplineService disciplineService;
 
     @GetMapping("allprofessors")
     public String showAllProfessors(Model model) {
@@ -25,6 +30,7 @@ public class ProfessorController {
 
     @GetMapping("/addprofessor")
     public String addprofessor(Model model) {
+        model.addAttribute("discipline",disciplineService.findAll());
         model.addAttribute("professor", new Professor());//initial bind with the form,to say to the webpage
 
         return "professor/addprofessor";
@@ -41,7 +47,7 @@ public class ProfessorController {
     @GetMapping("/editprofessor/{id}")
     public String editprofesor(Model model, @PathVariable Integer id) {
         Professor professor = professorService.findById(id);
-
+        model.addAttribute("discipline",disciplineService.findAll());
         model.addAttribute("professor", professor); // initial bind with the form, to say to the webpage
         // what is the type of student th:object
 
@@ -56,6 +62,7 @@ public class ProfessorController {
         return "redirect:/allprofessors";
 
     }
+
     @GetMapping("/deleteprofessor/{id}")
     public String deleteprofessor(@PathVariable Integer id) {
 

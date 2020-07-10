@@ -1,6 +1,6 @@
 package com.sb.onlineCatalog.controller;
+import com.sb.onlineCatalog.model.Grade;
 import com.sb.onlineCatalog.model.Student;
-
 import com.sb.onlineCatalog.service.GradeService;
 import com.sb.onlineCatalog.service.SchoolGroupService;
 import com.sb.onlineCatalog.service.StudentService;
@@ -17,13 +17,14 @@ import java.util.List;
 @Controller
 public class StudentController {
 
+
     @Autowired
     private StudentService studentService;
 
     @Autowired
     private SchoolGroupService schoolGroupService;
-    @Autowired
-    private GradeService gradeService;
+
+
 
     @GetMapping("allstudents")
     public String showAllStudents(Model model) {
@@ -36,8 +37,8 @@ public class StudentController {
 
     @GetMapping("/addstudent")
     public String addStudent(Model model) {
-        model.addAttribute("grades",gradeService.findAll());
-        model.addAttribute("schoolgroups", schoolGroupService.findAll());
+
+        model.addAttribute("schoolgroups", schoolGroupService.findAll());//incarcam lista de clase
         model.addAttribute("student", new Student()); // initial bind with the form, to say to the webpage
         // what is the type of student th:object
 
@@ -46,16 +47,17 @@ public class StudentController {
 
     @PostMapping("/addstudent")
     public String addStudent(@ModelAttribute Student student) {
-//        System.out.println(student);
+
         studentService.save(student);
-        return "redirect:/allstudent";
+        return "redirect:/allstudents";
 
     }
 
     @GetMapping("/editstudent/{id}")
     public String editStudent(Model model, @PathVariable Integer id) {
+
         model.addAttribute("schoolgroups", schoolGroupService.findAll());
-        model.addAttribute("grades",gradeService.findAll());
+
         Student student = studentService.findById(id);
 
         model.addAttribute("student", student); // initial bind with the form, to say to the webpage
@@ -67,7 +69,7 @@ public class StudentController {
 
     @PostMapping("/editstudent/{id}")
     public String editStudent(@ModelAttribute Student student, @PathVariable Integer id) {
-       // System.out.println(student);
+
 
         studentService.save(student); // save it again. SAVE acts as UPDATE
 //        return "redirect:/editstudent/"+id;
@@ -81,5 +83,6 @@ public class StudentController {
 
         return "redirect:/allstudents"; // forward
     }
+
 }
 

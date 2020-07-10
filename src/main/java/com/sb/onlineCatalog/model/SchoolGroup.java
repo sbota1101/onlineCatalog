@@ -16,9 +16,6 @@ import java.util.List;
 public class SchoolGroup {
         @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "YOUR_ENTITY_SEQ")
-//    @SequenceGenerator(name = "YOUR_ENTITY_SEQ", sequenceName = "YOUR_ENTITY_SEQ", allocationSize = 1)
     private int groupId;
     private String groupName;
     private Date groupYear;

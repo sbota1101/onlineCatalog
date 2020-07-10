@@ -36,14 +36,14 @@ public class GradeController {
     }
 
     @PostMapping("/addgrade")
-    public String addStudent(@ModelAttribute Grade grade) {
+    public String addGrade(@ModelAttribute Grade grade) {
         gradeService.save(grade);
         return "redirect:/allgrades";
 
     }
 
     @GetMapping("/editgrade/{id}")
-    public String editStudent(Model model, @PathVariable Integer id) {
+    public String editGrade(Model model, @PathVariable Integer id) {
         model.addAttribute("grades", gradeService.findAll());
         Grade grade = gradeService.findById(id);
 
@@ -55,7 +55,7 @@ public class GradeController {
     }
 
     @PostMapping("/editgrade/{id}")
-    public String editgrade(@ModelAttribute Grade grade, @PathVariable Integer id) {
+    public String editGrade(@ModelAttribute Grade grade, @PathVariable Integer id) {
 
         gradeService.save(grade); // save it again. SAVE acts as UPDATE
 
@@ -69,9 +69,5 @@ public class GradeController {
 
         return "redirect:/allgrades";
     }
-    @GetMapping("/grade/{id}/students")
-    public String viewGradesOfStudent(Model model, @PathVariable Integer id) {
-        model.addAttribute("students", gradeService.findGradesByStudent(id));
-        return "grade/viewstudents";
-    }
+
 }

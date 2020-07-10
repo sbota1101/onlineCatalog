@@ -36,11 +36,5 @@ public class GradeService {
         gradeRepository.deleteById(id);
     }
 
-    public List<Student> findGradesByStudent(Integer id) {
-        Optional<Grade> students = gradeRepository.findById(id);
-        if (students.isPresent()) {
-            return students.get().getStudentList();
-        }
-        return null;
-    }
+
 }

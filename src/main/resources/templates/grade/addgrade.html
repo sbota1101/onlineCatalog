@@ -24,12 +24,12 @@
             <form class="col s12" th:action="@{/addgrade}" th:object="${grade}" method="post">
 
                 <h1>Add grade</h1>
-                <p>Please fill in this form to edit a great.</p>
+                <p>Please fill in this form to add a great.</p>
                 <hr>
                 <div class="row">
                     <div class="input-field col s12">
 
-                        <input th:field="*{Grade}" id="grade_value" type="text" placeholder="Grade" required>
+                        <input th:field="*{Grade}" id="grade_value" type="number" placeholder="Grade" required>
                         <label for="grade_value"><b>Grade</b></label>
                     </div>
                 </div>

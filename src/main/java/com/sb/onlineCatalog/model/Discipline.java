@@ -11,11 +11,11 @@ import java.util.List;
 @Data
 @Entity
 public class Discipline {
-    //    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "YOUR_ENTITY_SEQ")
-//    @SequenceGenerator(name = "YOUR_ENTITY_SEQ", sequenceName = "YOUR_ENTITY_SEQ", allocationSize = 1)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int disciplineId;
+
     private String disciplineName;
     @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
     private List<Professor> professors;
