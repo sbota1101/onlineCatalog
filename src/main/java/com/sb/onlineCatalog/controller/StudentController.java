@@ -32,7 +32,7 @@ public class StudentController {
         List<Student> studentList = studentService.findAll();
         model.addAttribute("students", studentList);
 
-        return "student/showallstudents";
+        return "student/showAllstudents";
     }
 
     @GetMapping("/addstudent")
