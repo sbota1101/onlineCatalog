@@ -5,6 +5,7 @@ import com.sb.onlineCatalog.model.User;
 import com.sb.onlineCatalog.repository.PendingUserRepository;
 import com.sb.onlineCatalog.repository.UserRepository;
 import com.sb.onlineCatalog.service.RandomStringGenerator;
+import com.sb.onlineCatalog.service.SendGridEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +31,7 @@ public class RegisterController {
     private RandomStringGenerator randomStringGenerator;
 
     @Autowired
-   // private SendGridEmailService sendGridEmailService;
+   private SendGridEmailService sendGridEmailService;
 
     @GetMapping("/register")
     public String registerUser() {
