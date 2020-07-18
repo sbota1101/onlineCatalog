@@ -30,7 +30,7 @@ public class ProfessorController {
 
     @GetMapping("/addprofessor")
     public String addprofessor(Model model) {
-        model.addAttribute("discipline",disciplineService.findAll());
+        model.addAttribute("disciplines",disciplineService.findAll());
         model.addAttribute("professor", new Professor());//initial bind with the form,to say to the webpage
 
         return "professor/addprofessor";
@@ -47,7 +47,7 @@ public class ProfessorController {
     @GetMapping("/editprofessor/{id}")
     public String editprofesor(Model model, @PathVariable Integer id) {
         Professor professor = professorService.findById(id);
-        model.addAttribute("discipline",disciplineService.findAll());
+        model.addAttribute("disciplines",disciplineService.findAll());
         model.addAttribute("professor", professor); // initial bind with the form, to say to the webpage
         // what is the type of student th:object
 

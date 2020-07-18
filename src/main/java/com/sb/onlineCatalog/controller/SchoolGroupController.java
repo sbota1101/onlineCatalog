@@ -76,5 +76,9 @@ public class SchoolGroupController {
         model.addAttribute("students", schoolGroupService.findStudentsByGroup(id));
         return "schoolgroup/viewstudents";
     }
-
+    @GetMapping("/group/{id}/disciplines")
+    public String viewDisciplinesInGroup(Model model, @PathVariable Integer id) {
+        model.addAttribute("disciplines", schoolGroupService.findDisciplinesByGroup(id));
+        return "schoolgroup/viewdisciplines";
+    }
 }

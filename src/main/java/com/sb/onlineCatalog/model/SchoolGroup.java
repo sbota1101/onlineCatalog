@@ -14,16 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class SchoolGroup {
-        @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int groupId;
     private String groupName;
     private Date groupYear;
-
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private List<Discipline> disciplines;
     @OneToMany(
             mappedBy = "schoolGroup",
             cascade = CascadeType.ALL
     )
     private List<Student> students;
+
 
 }

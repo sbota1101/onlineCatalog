@@ -4,6 +4,7 @@ import com.sb.onlineCatalog.config.CustomerUserDetails;
 import com.sb.onlineCatalog.model.User;
 import com.sb.onlineCatalog.repository.UserRepository;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
+@Slf4j
 public class DatabaseUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;

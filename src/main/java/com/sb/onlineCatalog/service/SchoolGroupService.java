@@ -1,5 +1,6 @@
 package com.sb.onlineCatalog.service;
 
+import com.sb.onlineCatalog.model.Discipline;
 import com.sb.onlineCatalog.model.SchoolGroup;
 import com.sb.onlineCatalog.model.Student;
 import com.sb.onlineCatalog.repository.SchoolGroupRepository;
@@ -14,7 +15,8 @@ public class SchoolGroupService {
 
     @Autowired
     private SchoolGroupRepository schoolGroupRepository;
-
+    @Autowired
+    private DisciplineService disciplineService;
 
     public List<SchoolGroup> findAll() {
         return schoolGroupRepository.findAll();
@@ -46,5 +48,12 @@ public class SchoolGroupService {
         schoolGroupRepository.deleteById(id);
     }
 
+    public List<Discipline> findDisciplinesByGroup(Integer id) {
+        Optional<SchoolGroup> disciplines = schoolGroupRepository.findById(id);
+        if (disciplines.isPresent()) {
+            //return disciplines.get();
+        }
+        return null;
+    }
 }
 
