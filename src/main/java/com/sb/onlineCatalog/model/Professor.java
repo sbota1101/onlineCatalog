@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 public class Professor {
-
+//TODO:add @JsonIgnore la relatiile many to many ca sa nu ruleze la infinit
         @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int professorId;
