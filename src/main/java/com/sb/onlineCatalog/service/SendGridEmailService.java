@@ -1,21 +1,40 @@
 package com.sb.onlineCatalog.service;
-//import com.sendgrid.Method;
-//import com.sendgrid.Request;
-//import com.sendgrid.Response;
-//import com.sendgrid.SendGrid;
-//import com.sendgrid.helpers.mail.Mail;
-//import com.sendgrid.helpers.mail.objects.Content;
-//import com.sendgrid.helpers.mail.objects.Email;
-//import com.sendgrid.helpers.mail.objects.Personalization;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.io.IOException;
-//
-//@Service
-//@Slf4j
-//public class SendGridEmailService{
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+
+@Service
+@Slf4j
+public class SendGridEmailService {
+
+    private JavaMailSender javaMailSender;
+
+    @Autowired
+    public SendGridEmailService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
+
+    public void sendHTML(String from, String emailAddress, String please_confirm_account, String linkCreator) {
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo(emailAddress);
+        mail.setFrom(from);
+        mail.setSubject(please_confirm_account);
+        mail.setText(linkCreator);
+        javaMailSender.send(mail);
+    }
+}
 //    @Autowired
 //    private SendGrid sendGridClient;
 //
@@ -69,5 +88,5 @@ package com.sb.onlineCatalog.service;
 //        }
 //        return response;
 //    }
-//}
+
 
