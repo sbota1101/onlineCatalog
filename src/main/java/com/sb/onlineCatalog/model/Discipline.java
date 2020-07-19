@@ -21,6 +21,6 @@ public class Discipline {
     private List<Professor> professors;
     @ManyToMany(mappedBy = "disciplines")
     private List<Student> students;
-    @OneToMany(mappedBy = "disciplines",cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private SchoolGroup schoolGroup;
 }

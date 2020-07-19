@@ -19,8 +19,8 @@ public class SchoolGroup {
     private int groupId;
     private String groupName;
     private Date groupYear;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private List<Discipline> disciplines;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private List<Discipline> disciplines;
     @OneToMany(
             mappedBy = "schoolGroup",
             cascade = CascadeType.ALL
