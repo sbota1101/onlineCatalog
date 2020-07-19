@@ -51,7 +51,7 @@ public class SchoolGroupService {
     public List<Discipline> findDisciplinesByGroup(Integer id) {
         Optional<SchoolGroup> disciplines = schoolGroupRepository.findById(id);
         if (disciplines.isPresent()) {
-            //return disciplines.get();
+            return disciplines.get().getDisciplines();
         }
         return null;
     }
