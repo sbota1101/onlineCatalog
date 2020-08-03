@@ -1,18 +1,21 @@
 package com.sb.onlineCatalog.config;
-
 import com.sb.onlineCatalog.model.User;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class CustomerUserDetails implements UserDetails {
+@AllArgsConstructor
+
+ public class CustomerUserDetails implements UserDetails {
 
     private User user;
 
-    public CustomerUserDetails(User user) {
-        this.user = user;
-    }
+    //commented out because of lombok. Constructor used to pass user to this class
+//    public CustomUserDetails(User user) {
+//        this.user = user;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
